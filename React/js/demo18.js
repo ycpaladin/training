@@ -1,6 +1,6 @@
 var ImageItem = React.createClass({
     render: function() {
-        return null; 
+        return false; 
     }
 });
 var FocusImage = React.createClass({
