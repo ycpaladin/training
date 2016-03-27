@@ -1,8 +1,14 @@
+var ImageItem = React.createClass({
+    render: function() {
+
+    }
+});
 var FocusImage = React.createClass({
     getInitialState: function() {
         return {
             current: 0
         }
+
     },
     componentDidMount: function() {
         this.interval = setInterval(() => {
