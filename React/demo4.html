@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="scripts/react.js"></script>
+        <script src="scripts/react-dom.js"></script>
+        <script src="scripts/browser.min.js"></script>
+    </head>
+    <body>
+        <div id="container"></div>
+        <script type="text/babel">
+           var HelloMessage = React.createClass({
+            render : function(){
+                var names = ['kevin','green','Grass'].map(function(name,index){
+                    return <li key={index}>my name is {name}!</li>
+                });
+                return <ul data-name={this.props.name}>{names}</ul>
+            }
+           });
+           
+           ReactDOM.render(<HelloMessage name="kevin" />,document.getElementById("container"));
+        </script>
+    </body>
+    
+</html>

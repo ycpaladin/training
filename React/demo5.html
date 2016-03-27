@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="scripts/react.js"></script>
+    <script src="scripts/react-dom.js"></script>
+    <script src="scripts/browser.min.js"></script>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script type="text/babel">
+        var NodesList = React.createClass({ render : function(){ return (
+        <ol>
+            {
+                React.Children.map(this.props.children, function(child){
+                    return <li>{child}</li>
+                })
+                
+                /**this.props.children.map(function(child,index){
+                    return <li key={index}>{child}</li>
+                })**/
+            }
+        </ol>
+        ) } });
+        
+        ReactDOM.render(
+            <NodesList>
+                <span>kevin1</span>
+                <span>kevin2</span>
+                <span>kevin3</span>
+            </NodesList>,
+            document.getElementById("container")
+        )
+        
+    </script>
+</body>
+
+</html>

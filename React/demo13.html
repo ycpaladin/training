@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="scripts/react.js"></script>
+    <script src="scripts/react-dom.js"></script>
+    <script src="scripts/browser.min.js"></script>
+    <script src="scripts/JSXTransformer.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script type="text/jsx">
+       var Timer = React.createClass({
+            getInitialState : function() {
+                return {current: 0 };
+            },
+            componentDidMount() {
+                var start = new Date().getTime();
+                this.interval = setInterval(() => {
+                    var elapsed = Math.round((new Date().getTime() - start)  / 100);
+                    var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
+                    this.setState({ current: seconds});
+                },50);
+            },
+            render:function(){
+                return <div>{this.state.current}</div>
+            }
+        });
+       
+       ReactDOM.render(<Timer/>,document.getElementById("container"))
+    </script>
+</body>
+
+</html>
