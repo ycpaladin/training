@@ -1,6 +1,6 @@
 var ImageItem = React.createClass({
     render: function() {
-
+        return null; 
     }
 });
 var FocusImage = React.createClass({
@@ -8,7 +8,7 @@ var FocusImage = React.createClass({
         return {
             current: 0
         }
-
+        
     },
     componentDidMount: function() {
         this.interval = setInterval(() => {
