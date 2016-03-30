@@ -57,12 +57,13 @@ var ImageItem = React.createClass({displayName: "ImageItem",
         }
     },
     shouldComponentUpdate: function(nextProps, nextState) {
-        if (this.props.index == nextProps.current) {//下一个
+        var prev = nextProps.current - 1 < 0 ? this.props.count - 1: nextProps.current - 1;
+        if (this.props.index == nextProps.current) {
             this.state.className = 'banner-silder enter';
-        } else if(this.props.index == this.props.current){//上一个
+        } else if(this.props.current == prev){
             //这儿有问题
             this.state.className = 'banner-silder leave';
-        }else{//其他
+        }else{
             this.state.className = 'banner-silder';
         }
         return true;

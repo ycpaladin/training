@@ -5,25 +5,20 @@ var Number = React.createClass({displayName: "Number",
         };
     },
     componentDidMount: function() {
-        if (this.props.number == 0) {
+        if (this.props.number == 1) {
             this.setState({ className: ' current ' });
         }
     },
     shouldComponentUpdate: function(nextProps, nextState) {
-        if (this.props.number == nextProps.current) {
+        if (this.props.number - 1 == this.props.current) {
             this.state.className = ' current ';
         } else {
             this.state.className = '';
         }
         return true;
     },
-    handlerClick: function() {
-        this.props.change(this.props.number);
-    },
     render: function() {
-        return React.createElement("li", {className: this.state.className}, 
-            React.createElement("a", {href: "javascript:;", onClick: this.handlerClick}, this.props.number + 1)
-        )
+        return React.createElement("li", {className: this.state.className, onClick: this.props.change(this.props.number) }, this.props.number)
     }
 });
 
@@ -36,8 +31,8 @@ var Numbers = React.createClass({displayName: "Numbers",
     },
     render: function() {
         var numbers = [];
-        for (var i = 0; i < this.props.count; i++) {
-            var number = React.createElement(Number, {number: i, current: this.props.current, key: i, change: this.props.change})
+        for (var i = 1; i <= this.props.count; i++) {
+            var number = React.createElement(Number, {number: i, current: this.props.current, key: i - 1, change: this.props.change})
             numbers.push(number);
         }
         return React.createElement("ul", {className: "kf-numbers"}, numbers)
@@ -57,13 +52,11 @@ var ImageItem = React.createClass({displayName: "ImageItem",
         }
     },
     shouldComponentUpdate: function(nextProps, nextState) {
-        if (this.props.index == nextProps.current) {//下一个
+        if (this.props.index == nextProps.current) {
             this.state.className = 'banner-silder enter';
-        } else if(this.props.index == this.props.current){//上一个
-            //这儿有问题
+
+        } else {
             this.state.className = 'banner-silder leave';
-        }else{//其他
-            this.state.className = 'banner-silder';
         }
         return true;
     },
@@ -81,9 +74,6 @@ var FocusImage = React.createClass({displayName: "FocusImage",
 
     },
     componentDidMount: function() {
-        this.setInterval();
-    },
-    setInterval: function(params) {
         this.interval = setInterval(() => {
             var current = this.state.current;
             if (current == this.props.images.length - 1) {
@@ -96,17 +86,15 @@ var FocusImage = React.createClass({displayName: "FocusImage",
         }, this.props.interval);
     },
     changeNumber: function(number) {
-        clearInterval(this.interval);
-        console.log('==>' + number);
-        this.setState({ current: number});
+        //this.setState({ current: number - 1 });
     },
-   
     componnetWillUnMount: function() {
-        clearInterval(this.interval);
+        clearImmediate(this.interval);
     },
     render: function() {
         var images = this.props.images.map((image, index) => {
-            return React.createElement(ImageItem, {key: index, index: index, src: image.src, current: this.state.current, count: this.props.images.length})
+            return React.createElement(ImageItem, {key: index, index: index, src: image.src, current: this.state.current})
+
         });
 
         return React.createElement("div", {className: "kf-banner"}, 
@@ -118,9 +106,9 @@ var FocusImage = React.createClass({displayName: "FocusImage",
 
 var images = [
     { src: 'http://p1-merida.yamedia.tw/MjUxNTc2OTRtZXJpZGE=/09252d8a2f6118f7.jpg?w=1440&h=390', id: 1 },
-    { src: 'http://p1-merida.yamedia.tw/MjYyNjk0MDJtZXJpZGE=/a02551540af3ef3d.jpg?w=1440&h=390', id: 2 },
-    { src: 'http://p1-merida.yamedia.tw/MjYwMDk4MDhtZXJpZGE=/5b35498d734a7da6.jpg?w=1440&h=390', id: 3 },
-    { src: 'http://img4.imgtn.bdimg.com/it/u=3987117004,2253985804&fm=21&gp=0.jpg', id: 4 },
-    { src: 'http://p1-merida.yamedia.tw/MjU4ODQzNTltZXJpZGE=/6f2546da6f21ca6a.jpg', id: 5 }
+    { src: 'http://p1-merida.yamedia.tw/MjUxNTc2OTRtZXJpZGE=/09252d8a2f6118f7.jpg?w=1440&h=390', id: 2 },
+    { src: 'http://p1-merida.yamedia.tw/MjUxNTc2OTRtZXJpZGE=/09252d8a2f6118f7.jpg?w=1440&h=390', id: 3 },
+    { src: 'http://p1-merida.yamedia.tw/MjUxNTc2OTRtZXJpZGE=/09252d8a2f6118f7.jpg?w=1440&h=390', id: 4 },
+    { src: 'http://p1-merida.yamedia.tw/MjUxNTc2OTRtZXJpZGE=/09252d8a2f6118f7.jpg?w=1440&h=390', id: 5 }
 ];
 ReactDOM.render(React.createElement(FocusImage, {images: images, interval: "5000"}), document.getElementById("container"))

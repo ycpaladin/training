@@ -10,7 +10,7 @@ var Number = React.createClass({displayName: "Number",
         }
     },
     shouldComponentUpdate: function(nextProps, nextState) {
-        if (this.props.number == nextProps.current) {
+        if (this.props.number == this.props.current) {
             this.state.className = ' current ';
         } else {
             this.state.className = '';
@@ -57,13 +57,11 @@ var ImageItem = React.createClass({displayName: "ImageItem",
         }
     },
     shouldComponentUpdate: function(nextProps, nextState) {
-        if (this.props.index == nextProps.current) {//下一个
+        if (this.props.index == nextProps.current) {
             this.state.className = 'banner-silder enter';
-        } else if(this.props.index == this.props.current){//上一个
-            //这儿有问题
+
+        } else {
             this.state.className = 'banner-silder leave';
-        }else{//其他
-            this.state.className = 'banner-silder';
         }
         return true;
     },
@@ -98,15 +96,17 @@ var FocusImage = React.createClass({displayName: "FocusImage",
     changeNumber: function(number) {
         clearInterval(this.interval);
         console.log('==>' + number);
-        this.setState({ current: number});
+        this.setState({ current: number - 1 });
     },
-   
+    shouldComponentUpdate: function(nextProps, nextState) {
+        return this.state.current != nextState.current;
+    },
     componnetWillUnMount: function() {
         clearInterval(this.interval);
     },
     render: function() {
         var images = this.props.images.map((image, index) => {
-            return React.createElement(ImageItem, {key: index, index: index, src: image.src, current: this.state.current, count: this.props.images.length})
+            return React.createElement(ImageItem, {key: index, index: index, src: image.src, current: this.state.current})
         });
 
         return React.createElement("div", {className: "kf-banner"}, 

@@ -62,7 +62,7 @@ var ImageItem = React.createClass({displayName: "ImageItem",
         } else if(this.props.index == this.props.current){//上一个
             //这儿有问题
             this.state.className = 'banner-silder leave';
-        }else{//其他
+        }else{
             this.state.className = 'banner-silder';
         }
         return true;

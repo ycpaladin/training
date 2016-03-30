@@ -29,9 +29,9 @@
             background-size: 100% 100%;
         }
         
-        .banner-silder:first-child {
+        /*.banner-silder:first-child {
             transform: translateX(0px);
-        }
+        }*/
         
         .banner-silder.leave {
             animation: leave 2s forwards;
@@ -68,6 +68,34 @@
             height: 100%;
             display: block;
         }  
+        
+        .kf-numbers{
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+            position: absolute;
+            right: 0px;
+            bottom: 10px;
+            height: 30px;
+            width: 500px;
+        }
+        .kf-numbers li {
+            float: left;
+            width: 20px;
+            height: 20px;
+            border-radius: 20px;
+            background-color: #000;
+            
+            margin: 0px 5px;
+            text-align: center;
+        }
+        .kf-numbers li a{
+            color: #fff;
+            text-decoration: none;
+        }
+        .kf-numbers li.current a{
+            color: red;
+        }
     </style>
 </head>
 
