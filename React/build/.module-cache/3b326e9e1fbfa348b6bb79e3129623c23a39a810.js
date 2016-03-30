@@ -107,7 +107,7 @@ var FocusImage = React.createClass({displayName: "FocusImage",
     render: function() {
         var imageItem = React.createFactory(ImageItem);
         var images = this.props.images.map((image, index) => {
-            return imageItem({ key:index, index: index, src:image.src, current:this.state.current,count:this.props.images.length});
+            return imageItem({ index: index, src:image.src, current:this.state.current,count:this.props.images.length});
             //return <ImageItem key={index} index={index} src={image.src} current={this.state.current} count={this.props.images.length}/>
         });
 

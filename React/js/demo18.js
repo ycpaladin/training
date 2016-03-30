@@ -105,8 +105,10 @@ var FocusImage = React.createClass({
         clearInterval(this.interval);
     },
     render: function() {
+        var imageItem = React.createFactory(ImageItem);
         var images = this.props.images.map((image, index) => {
-            return <ImageItem key={index} index={index} src={image.src} current={this.state.current} count={this.props.images.length}/>
+            return imageItem({ key:index, index: index, src:image.src, current:this.state.current,count:this.props.images.length});
+            //return <ImageItem key={index} index={index} src={image.src} current={this.state.current} count={this.props.images.length}/>
         });
 
         return <div className='kf-banner'>
