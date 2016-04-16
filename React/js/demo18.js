@@ -59,10 +59,10 @@ var ImageItem = React.createClass({
     shouldComponentUpdate: function(nextProps, nextState) {
         if (this.props.index == nextProps.current) {//下一个
             this.state.className = 'banner-silder enter';
-        } else if(this.props.index == this.props.current){//上一个
+        } else if (this.props.index == this.props.current) {//上一个
             //这儿有问题
             this.state.className = 'banner-silder leave';
-        }else{//其他
+        } else {//其他
             this.state.className = 'banner-silder';
         }
         return true;
@@ -98,16 +98,16 @@ var FocusImage = React.createClass({
     changeNumber: function(number) {
         clearInterval(this.interval);
         console.log('==>' + number);
-        this.setState({ current: number});
+        this.setState({ current: number });
     },
-   
+
     componnetWillUnMount: function() {
         clearInterval(this.interval);
     },
     render: function() {
         var imageItem = React.createFactory(ImageItem);
         var images = this.props.images.map((image, index) => {
-            return imageItem({ key:index, index: index, src:image.src, current:this.state.current,count:this.props.images.length});
+            return imageItem({ key: index, index: index, src: image.src, current: this.state.current, count: this.props.images.length });
             //return <ImageItem key={index} index={index} src={image.src} current={this.state.current} count={this.props.images.length}/>
         });
 
@@ -116,7 +116,7 @@ var FocusImage = React.createClass({
             <Numbers count={images.length} current={this.state.current} change={this.changeNumber}/>
         </div>
     }
-});
+});í
 
 var images = [
     { src: 'http://p1-merida.yamedia.tw/MjUxNTc2OTRtZXJpZGE=/09252d8a2f6118f7.jpg?w=1440&h=390', id: 1 },
