@@ -47,3 +47,23 @@
 .part {
     min-height: 300px;
 }
+
+footer {
+    background-color: #202;
+    min-height: 300px;
+}
+
+
+/*footer .col-sm-4 {
+    background-color: #fff;
+    min-height: 250px;
+    margin: 20px 0;
+}
+*/
+
+footer .list {
+    background-color: #fff;
+    margin: 20px 0;
+    width: 100%;
+    min-height: 250px;
+}
