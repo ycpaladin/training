@@ -1,0 +1,99 @@
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+#container {
+    height: 100%;
+}
+
+.ui-menu {
+    background-color: #000;
+    width: 100%;
+    height: 45px;
+}
+
+@media (max-device-width:1920px) and (min-device-width:1366px) {
+    #container {
+        background-color: #ccc;
+    }
+    .ui-menu a {
+        display: none;
+    }
+    .ui-menu ul {
+        list-style: none;
+        margin: 0 auto;
+        padding: 0;
+        width: 600px;
+    }
+    .ui-menu li {
+        float: left;
+        color: #fff;
+        text-align: center;
+        width: 100px;
+        height: 45px;
+        line-height: 45px;
+    }
+    .ui-menu li:hover {
+        color: #000;
+        background-color: #fff;
+    }
+}
+
+@media (device-width:320px) {
+    #container {
+        background-color: #848484;
+    }
+    .ui-menu a {
+        margin-right: 10px;
+        color: #fff;
+        text-decoration: none;
+        float: right;
+        display: block;
+        height: 45px;
+        line-height: 45px;
+    }
+    .ui-menu ul {
+        /*display: none;*/
+        list-style: none;
+        position: absolute;
+        top: 45px;
+        right: -100px;
+        margin: 0;
+        padding: 0;
+        background-color: #ccc;
+        height: 100%;
+        width: 100px;
+    }
+    .ui-menu li {
+        padding-left: 10px;
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+    }
+    .ui-menu ul.open {
+        animation: open 0.5s forwards;
+    }
+    @keyframes open {
+        from {
+            right: -100px;
+        }
+        to {
+            right: 0px;
+        }
+    }
+    .ui-menu ul.close {
+        animation: close 0.5s forwards;
+    }
+    @keyframes close {
+        from {
+            right: 0px;
+        }
+        to {
+            right: -100px;
+        }
+    }
+}

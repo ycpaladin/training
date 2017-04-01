@@ -1,0 +1,49 @@
+.header {
+    background-color: #f4645f;
+}
+
+.header .container {
+    padding-top: 42px;
+    padding-bottom: 42px;
+}
+
+.header .container h1 {
+    color: #fff;
+    text-align: center;
+}
+
+.header .container a {
+    border-radius: 0px;
+    width: 100px;
+    border: 1px solid #f1362f;
+}
+
+.navbar {
+    margin: 0;
+}
+
+@media only screen and (max-width:767px) {
+    a.btn-doc {
+        display: block;
+        margin: 10px auto!important;
+        width: 50%!important;
+    }
+}
+
+#container {
+    background-color: #ccc;
+}
+
+.post,
+.part {
+    margin: 20px 0;
+    background-color: #fff;
+}
+
+.post {
+    min-height: 450px;
+}
+
+.part {
+    min-height: 300px;
+}
