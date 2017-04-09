@@ -46,4 +46,4 @@ const r = Maybe.of('Malkovich Malkovich').map(split(' '));//.map(match(/a/ig));
 console.log(r);
 
 
-
+//https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html
