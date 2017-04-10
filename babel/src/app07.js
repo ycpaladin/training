@@ -38,21 +38,3 @@
 
 // func.call({ id: 1 });
 
-
-
-// var obj = {
-//     a: '1',
-//     b: function (c) {
-//         console.log(this.a, c);
-//     }
-// }
-
-var obj = {
-    a: '1',
-    b(c) {
-        console.log(this.a, c);
-    }
-}
-
-
-obj.b(11);
