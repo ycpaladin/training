@@ -1,17 +1,17 @@
-const { prop, concat, match, split } = require('ramda');
-// const Container = function (__value) {
-//     this.__value = __value;
-// }
+const { prop, concat, match, split, compose, curry, reduce } = require('ramda');
+const Container = function (__value) {
+    this.__value = __value;
+}
 
 
-// Container.of = (value) => {
-//     return new Container(value);
-// }
+Container.of = (value) => {
+    return new Container(value);
+}
 
 
-// Container.prototype.map = function (f) {
-//     return Container.of(f(this.__value));
-// }
+Container.prototype.map = function (f) {
+    return Container.of(f(this.__value));
+}
 
 // const result = Container.of(2).map((two) => two + 2);
 // console.log(result);
@@ -20,9 +20,9 @@ const { prop, concat, match, split } = require('ramda');
 // console.log(r2);
 
 
-// const r3 = Container.of('bombs').map(concat('kevin')).map(prop('length'));
+const r3 = Container.of('bombs').map(concat('kevin')).map(prop('length'));
 
-// console.log(r3);
+console.log(r3);
 
 
 const Maybe = function (__value) {
@@ -42,8 +42,17 @@ Maybe.prototype.map = function (f) {
     return this.isNothing() ? Maybe.of(null) : Maybe.of(f(this.__value));
 }
 
-const r = Maybe.of('Malkovich Malkovich').map(split(' '));//.map(match(/a/ig));
-console.log(r);
+const head = array => array[0];
+
+const xx = curry(function (reg, array) {
+    return array.map(compose(head, match(reg)));
+});
+
+const rs = xx(/a/ig)(['aabcq', 'ddacd']);
+console.log(rs);
+
+const r = Maybe.of('Malkovich Malkovich').map(split(' ')).map(xx(/a/ig));
+console.log(r.__value);
 
 
 //https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html
