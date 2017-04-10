@@ -31,10 +31,28 @@
 
 // func(10, { d: 10 })
 
-function func() {
-    console.log(this);
-    console.log(this.id);
+// function func() {
+//     console.log(this);
+//     console.log(this.id);
+// }
+
+// func.call({ id: 1 });
+
+
+
+// var obj = {
+//     a: '1',
+//     b: function (c) {
+//         console.log(this.a, c);
+//     }
+// }
+
+var obj = {
+    a: '1',
+    b(c) {
+        console.log(this.a, c);
+    }
 }
 
-func.call({ id: 1 });
 
+obj.b(11);
