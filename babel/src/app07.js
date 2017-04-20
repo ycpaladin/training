@@ -38,3 +38,31 @@
 
 // func.call({ id: 1 });
 
+require('babel-polyfill');
+
+const object = {
+    name: 'kevin',
+    age: 31,
+    sex: 1
+}
+
+
+var r = Object.values(object);
+console.log(r);
+
+
+var obj = Object.create({}, {
+    p: {
+        value: 44,
+        enumerable: true
+    }
+});
+
+obj.__proto__.a = function () {
+    return 11;
+}
+
+console.log(Object.keys(obj));
+
+
+console.log(Object.entries(obj))
