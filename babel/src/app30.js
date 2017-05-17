@@ -13,3 +13,13 @@ var x = {
 
 console.log(x[s]);
 console.log(x[s2]);
+
+
+console.log('==>',typeof null)
+
+var array = [];
+
+Array.prototype.push.apply(array, [1,2,3,4,5] )
+
+// [].push.apply(array, [1,2,3,4,5]);
+console.log(array);
