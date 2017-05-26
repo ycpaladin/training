@@ -19,5 +19,8 @@
     "moment": "^2.18.1",
     "ramda": "^0.23.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "co": "^4.6.0",
+    "node-fetch": "^1.6.3"
+  }
 }

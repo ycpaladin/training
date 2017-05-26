@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title></title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        #container {
+            width: 300px;
+            height: 25px;
+        }
+
+        a.arrow {
+            margin: 0 2px;
+            display: block;
+            float: left;
+            color: #fff;
+            background-color: #ce88fe;
+            text-decoration: none;
+            text-align: center;
+            width: 25px;
+            height: 25px;
+        }
+
+        a.arrow-disable {
+            background-color: #bfb2c6;
+        }
+
+        span {
+            margin: 0 -2px;
+            float: left;
+            display: block;
+            border-top: 1px solid #ce88fe;
+            border-bottom: 1px solid #ce88fe;
+            box-sizing: border-box;
+            text-align: center;
+            width: 60px;
+            height: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container" my-controller="qqq">
+
+    </div>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./lib/app31.js"></script>
+</body>
+
+</html>
