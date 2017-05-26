@@ -102,30 +102,30 @@ function getNumber2(){
 
 //------------------------------异步
 
-// var gen =  async function (){
-//     // var {n1,n2} = await {
-//     //     "n1":getNumber1(),
-//     //     "n2":getNumber2()
-//     // }
-//     // return n1 + n2;
+var gen =  async function (){
+    // var {n1,n2} = await {
+    //     "n1":getNumber1(),
+    //     "n2":getNumber2()
+    // }
+    // return n1 + n2;
 
-//     // var n1 = await getNumber1();
-//     // var n2 = await getNumber2();
-//     // return n1+ n2;
+    // var n1 = await getNumber1();
+    // var n2 = await getNumber2();
+    // return n1+ n2;
 
-//     // 最佳方式  并行 并转换值
-//     // let [n1,n2] = await Promise.all([getNumber1(), getNumber2()]);
-//     // return  n1+n2;
+    // 最佳方式  并行 并转换值
+    // let [n1,n2] = await Promise.all([getNumber1(), getNumber2()]);
+    // return  n1+n2;
 
-        //代码太多，看应用场景
-//     let [n1,n2] =  [getNumber1,getNumber2].map(async (func, index)=> {
-//         var r = await func();
-//         console.log(index,'====>',r);
-//         return r;
-//     });
-//     console.log('n1=>',n1)
-//     return await n1 + await n2;
-// }
+    // 代码太多，看应用场景
+    let [n1,n2] =  [getNumber1,getNumber2].map(async (func, index)=> {
+        var r = await func();
+        console.log(index,'====>',r);
+        return r;
+    });
+    console.log('n1=>',n1)
+    return await n1 + await n2;
+}
 
 
 // // // co(gen)
