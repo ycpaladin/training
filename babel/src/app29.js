@@ -1,40 +1,40 @@
 var controller = {
-    name: 'qqq',
-    controller($scope, ele) {
-        $scope.name = "kevin";
+	name: 'qqq',
+	controller($scope, ele) {
+		$scope.name = 'kevin';
         // alert(ele); $('#xxx').on('click',function(){     $scope.name = 'ccw'; })
 
-        setTimeout(function () {
-            $scope.name = 'ccw';
-        }, 3000);
-    }
+		setTimeout(function () {
+			$scope.name = 'ccw';
+		}, 3000);
+	}
 };
 
 var Scope = function (ele) {
     // this.ele = ele;
-    var template = ele.html();
-    var watch = {};
-    setInterval(function (self) {
-        Object
+	var template = ele.html();
+	var watch = {};
+	setInterval(function (self) {
+		Object
             .keys(self)
             .forEach(function (key, index) {
-                if (watch[key] !== self[key]) {
-                    watch[key] = self[key];
-                    self.refresh();
-                }
+	if (watch[key] !== self[key]) {
+		watch[key] = self[key];
+		self.refresh();
+	}
 
-            });
-    }, 0, this);
+});
+	}, 0, this);
 
-    this.refresh = function () {
-        function compile(template) {
+	this.refresh = function () {
+		function compile(template) {
             // var evalExpr = /{{(.+?)%>/g; var expr = /}}([\s\S]+?)%>/g; template =
             // template     .replace(evalExpr, '`); \n  echo( $1 ); \n  echo(`')
             // .replace(expr, '`); \n $1 \n  echo(`');
             
-            template = 'echo(`' + template + '`);';
+			template = 'echo(`' + template + '`);';
 
-            var script = `(function parse(data){
+			var script = `(function parse(data){
     var output = "";
 
     function echo(html){
@@ -46,17 +46,17 @@ var Scope = function (ele) {
     return output;
   })`;
 
-            return script;
-        }
-        var parse = eval(compile(template));
+			return script;
+		}
+		var parse = eval(compile(template));
 
-        var result = parse(this);
+		var result = parse(this);
 
-        ele.html(result);
-    }
+		ele.html(result);
+	};
 };
 
 (function init($, {name, controller}) {
-    var ele = $(`[my-controller=${name}]`);
-    controller(new Scope($(ele[0])), ele);
+	var ele = $(`[my-controller=${name}]`);
+	controller(new Scope($(ele[0])), ele);
 })(jQuery, controller);

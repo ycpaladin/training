@@ -1,5 +1,5 @@
 require('babel-polyfill');
-var fetch = require('node-fetch');
+const fetch = require('node-fetch');
 // const g = function * () {
 //     yield 1;
 //     yield 2;
@@ -20,11 +20,9 @@ var fetch = require('node-fetch');
 // });
 
 
-
 // const f = () => console.log('now');
 // Promise.resolve().then(f);
 // console.log('next');
-
 
 
 // const f = async ()=>console.log('now');
@@ -39,7 +37,6 @@ var fetch = require('node-fetch');
 
 // f().then(d=>console.log(d));
 // console.log('111xxxx')
-
 
 
 // function * gen(){
@@ -77,8 +74,6 @@ var fetch = require('node-fetch');
 // }
 
 
-
-
 // var obj = {
 //     [Symbol.iterator](){
 //         var i = 0;
@@ -101,7 +96,6 @@ var fetch = require('node-fetch');
 // for(var x of obj){
 //     console.log(x);
 // }
-
 
 
 // var obj = {
@@ -143,7 +137,7 @@ var fetch = require('node-fetch');
 //         console.log('Tick!')
 //         yield;
 //         console.log("Tock!");
-        
+
 //     }
 // }
 
@@ -179,20 +173,18 @@ var fetch = require('node-fetch');
 
 // loader.next();
 // console.log('3.')
+function request() {
+  const url = 'https://api.github.com/users/github';
+  fetch(url).then(d => d.json()).then(d => g.next(d));
+}
 
-
-function * gen(){
-    var result = yield request();
-    console.log(result.bio);
-    console.log(result.bio,'=====>');
+function* gen() {
+  const result = yield request();
+  console.log(result.bio);
+  console.log(result.bio, '=====>');
 }
 
 
-function request(){
-    var url = 'https://api.github.com/users/github';
-    fetch(url).then(d=>d.json()).then(d=>g.next(d));
-}
-
-var g = gen();
-g.next();//.value.then(d =>d.json()).then(d=> g.next(d));
-console.log('==<>')
+const g = gen();
+g.next();// .value.then(d =>d.json()).then(d=> g.next(d));
+console.log('==<>');

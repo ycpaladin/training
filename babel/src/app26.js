@@ -1,43 +1,37 @@
 
 class Functor {
-    constructor(exec) {
-        this.exec = exec;
-    }
+  constructor(exec) {
+    this.exec = exec;
+  }
 
-    map(f) {
-        var exec = this.exec;
-        return new Functor(function (resovle) {
-            return exec(function (a) {
-                return resovle(f(a));
-            });
-        });
-    }
+  map(f) {
+    const exec = this.exec;
+    return new Functor(resovle => exec(a => resovle(f(a))));
+  }
 }
 
 
+const prop = function (propertyName) {
+  return function (object) {
+    return object[propertyName];
+  };
+};
 
-var prop = function (propertyName) {
-    return function (object) {
-        return object[propertyName];
-    }
-}
 
+const toUpperCase = function (str) {
+  return str.toUpperCase();
+};
 
-var toUpperCase = function (str) {
-    return str.toUpperCase();
-}
+const head = function (str) {
+  return str[0];
+};
 
-var head = function (str) {
-    return str[0];
-}
-
-new Functor(function (resovle) {
-    setTimeout(function () {
-        resovle({ title: 'xxxxxxx' });
-    }, 1000);
-
-}).map(prop('title')).map(head).map(toUpperCase).exec(function (data) {
-    console.log(data)
+new Functor((resovle) => {
+  setTimeout(() => {
+    resovle({ title: 'xxxxxxx' });
+  }, 1000);
+}).map(prop('title')).map(head).map(toUpperCase)
+.exec((data) => {
+  console.log(data);
 });
-
 

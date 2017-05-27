@@ -2,21 +2,21 @@
 // console.log(s.length);
 
 
-var total = 30;
-var msg = passthru`The total is ${total} (${total * 1.05} with tax)`;
+const total = 30;
+const msg = passthru`The total is ${total} (${total * 1.05} with tax)`;
 
 function passthru(literals) {
-    var result = '';
-    var i = 0;
+  let result = '';
+  let i = 0;
 
-    while (i < literals.length) {
-        result += literals[i++];
-        if (i < arguments.length) {
-            result += arguments[i];
-        }
+  while (i < literals.length) {
+    result += literals[i++];
+    if (i < arguments.length) {
+      result += arguments[i];
     }
+  }
 
-    return result;
+  return result;
 }
 
 console.log(msg);

@@ -12,11 +12,11 @@ const fetch = require('isomorphic-fetch');
 //     });
 // }
 
-var prop = function (propertyName) {
-    return function (object) {
-        return object[propertyName];
-    }
-}
+const prop = function (propertyName) {
+  return function (object) {
+    return object[propertyName];
+  };
+};
 
 // new Functor(function (resovle) {
 //     setTimeout(function () {
@@ -30,47 +30,35 @@ var prop = function (propertyName) {
 // console.log(obj);
 
 
-
-
-
-
-
-var Func = function (exec) {
-    this.exec = exec;
-}
+const Func = function (exec) {
+  this.exec = exec;
+};
 
 
 Func.prototype.map = function (f) {
-    var exec = this.exec;
-    return Func.of(function (reject, resovle) {
-        return exec(function (a) {
-            reject(a);
-        }, function (b) {
-            resovle(f(b));
-        });
-    });
-}
+  const exec = this.exec;
+  return Func.of((reject, resovle) => exec((a) => {
+    reject(a);
+  }, (b) => {
+    resovle(f(b));
+  }));
+};
 
 
 Func.of = function (exec) {
-    return new Func(exec);
-}
+  return new Func(exec);
+};
 
-Func.of(function (reject, resovle) {
-    var url = `https://cnodejs.org/api/v1/topics`;
+Func.of((reject, resovle) => {
+  const url = 'https://cnodejs.org/api/v1/topics';
 
-    fetch(url).then(function (res) {
-        return res.json()
-    }).then(function ({ success, data }) {
-        if (success)
-            resovle(data);
-        else
-            reject('error..')
-    }).catch(error => {
-        reject(error);
-    })
-}).map(prop('length')).exec(function (error) {
-    console.log(error);
-}, function (data) {
-    console.log(data);
+  fetch(url).then(res => res.json()).then(({ success, data }) => {
+    if (success) { resovle(data); } else { reject('error..'); }
+  }).catch((error) => {
+    reject(error);
+  });
+}).map(prop('length')).exec((error) => {
+  console.log(error);
+}, (data) => {
+  console.log(data);
 });

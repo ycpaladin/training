@@ -3,20 +3,16 @@
 //    setTimeout(resovle, 3000, 22);     }) ]).then(values => {
 // console.log('===>', values) });
 
-const preloadImage = (url) => {
-    return new Promise((resovle, reject) => {
-        var image = new Image();
-        image.onload = resovle;
-        image.onerror = reject;
-        image.src = url;
-    });
-}
+const preloadImage = url => new Promise((resovle, reject) => {
+  const image = new Image();
+  image.onload = resovle;
+  image.onerror = reject;
+  image.src = url;
+});
 
-preloadImage('http://www.baidu.com/img/bd_logo1.png').then(d => {
+preloadImage('http://www.baidu.com/img/bd_logo1.png').then((d) => {
     // console.log('sucess.')
-    document
-        .body
-        .appendChild(d.target);
-}, e => {
-    console.log('error');
-})
+  document.body.appendChild(d.target);
+}, () => {
+  console.log('error');
+});

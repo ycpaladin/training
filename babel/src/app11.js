@@ -22,13 +22,13 @@
 
 
 class Functor {
-    constructor(val) {
-        this.val = val;
-    }
+  constructor(val) {
+    this.val = val;
+  }
 
-    map(f) {
-        return new Functor(f(this.val));
-    }
+  map(f) {
+    return new Functor(f(this.val));
+  }
 }
 
 // Functor.of = val => {
@@ -40,9 +40,9 @@ class Functor {
 // };
 
 class Maybe extends Functor {
-    map(f) {
-        return this.val ? Maybe.of(f(this.val)) : Maybe.of(null);
-    }
+  map(f) {
+    return this.val ? Maybe.of(f(this.val)) : Maybe.of(null);
+  }
 }
 
 Maybe.of = val => new Maybe(val);
@@ -62,33 +62,27 @@ Maybe.of = val => new Maybe(val);
 // console.log(result);
 
 
-Maybe.of(null).map(function (s) {
-    return s.toUpperCase();
-});
-
-
+Maybe.of(null).map(s => s.toUpperCase());
 
 
 class Either extends Functor {
-    constructor(left, right) {
-        super();
+  constructor(left, right) {
+    super();
         // Object.assign(this, { left, right });
-        this.left = left;
-        this.right = right;
-    }
+    this.left = left;
+    this.right = right;
+  }
 
-    map(f) {
-        return this.right ?
+  map(f) {
+    return this.right ?
             Either.of(this.left, f(this.right)) :
             Either.of(f(this.left), this.right);
-    }
+  }
 }
 
-Either.of = (left, right) => {
-    return new Either(left, right);
-};
+Either.of = (left, right) => new Either(left, right);
 
-const addOne = (x) => x + 1;
+const addOne = x => x + 1;
 
 const r1 = Either.of(1, 2).map(addOne);
 const r2 = Either.of(1, null).map(addOne);

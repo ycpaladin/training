@@ -20,16 +20,14 @@
 // console.log(result)
 
 
-
-var memoize = function (f) {
-    var cache = {};
-    return function () {
-        var arg_str = JSON.stringify(arguments);
-        cache[arg_str] = cache[arg_str] || f.apply(f, arguments);
-        return cache[arg_str];
-    }
-}
-
+const memoize = function (f) {
+  const cache = {};
+  return function () {
+    const arg_str = JSON.stringify(arguments);
+    cache[arg_str] = cache[arg_str] || f.apply(f, arguments);
+    return cache[arg_str];
+  };
+};
 
 
 // var r = memoize((x, y) => x + y);
@@ -43,10 +41,10 @@ var memoize = function (f) {
 // console.log(xx3);
 const fetch = require('isomorphic-fetch');
 
-var pureHttpCall = memoize((url, params) => () => fetch(url, params));
+const pureHttpCall = memoize((url, params) => () => fetch(url, params));
 
-var ajax = pureHttpCall('https://cnodejs.org/api/v1/topics', {});
+const ajax = pureHttpCall('https://cnodejs.org/api/v1/topics', {});
 
-ajax().then(res => res.json()).then(data => {
-    console.log(data);
+ajax().then(res => res.json()).then((data) => {
+  console.log(data);
 });

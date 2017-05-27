@@ -65,7 +65,6 @@
 // }
 
 
-
 // var newObj = getNewObj();
 
 // for (var item of newObj) {

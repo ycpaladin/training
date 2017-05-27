@@ -9,7 +9,6 @@
 // // 报错
 
 
-
 // function fetch(url, { body = '', method = 'GET', headers = {} } = {}) {
 //     console.log(method);
 // }
@@ -41,28 +40,28 @@
 require('babel-polyfill');
 
 const object = {
-    name: 'kevin',
-    age: 31,
-    sex: 1
-}
+  name: 'kevin',
+  age: 31,
+  sex: 1,
+};
 
 
-var r = Object.values(object);
+const r = Object.values(object);
 console.log(r);
 
 
-var obj = Object.create({}, {
-    p: {
-        value: 44,
-        enumerable: true
-    }
+const obj = Object.create({}, {
+  p: {
+    value: 44,
+    enumerable: true,
+  },
 });
 
 obj.__proto__.a = function () {
-    return 11;
-}
+  return 11;
+};
 
 console.log(Object.keys(obj));
 
 
-console.log(Object.entries(obj))
+console.log(Object.entries(obj));

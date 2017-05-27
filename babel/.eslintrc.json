@@ -1,0 +1,17 @@
+{
+    "extends": "airbnb-base",
+    "plugins": [
+        "import"
+    ],
+    "globals": {
+        "document": true,
+        "Image":true,
+        "requirejs":true
+    },
+    "rules": {
+        "linebreak-style": "off",
+        "no-console":"off",
+        "no-use-before-define":"off",
+        "no-plusplus":"off"
+    }
+}

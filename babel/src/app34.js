@@ -1,7 +1,7 @@
-var fs = require('fs');
-var path = require('path');
+// const fs = require('fs');
+// const path = require('path');
 require('babel-polyfill');
-var co = require('co');
+// const co = require('co');
 // function* doStuff(){
 //     yield fs.readFileSync.bind(null, path.resolve(__dirname,'../index.html'),'utf-8');
 //     yield fs.readFileSync.bind(null,path.resolve(__dirname,'../index2.1.html'),'utf-8');
@@ -12,7 +12,6 @@ var co = require('co');
 // for(var text of doStuff()){
 //     console.log(text());
 // }
-
 
 
 // function* gen(p){
@@ -56,22 +55,22 @@ var co = require('co');
 // });
 
 
-function getNumber1(){
-    console.log('1..')
-    return new Promise((resovle,reject)=>{
-        setTimeout(function() {
-            resovle(100);
-        }, 2000);
-    })
+function getNumber1() {
+  console.log('1..');
+  return new Promise((resovle) => {
+    setTimeout(() => {
+      resovle(100);
+    }, 2000);
+  });
 }
 
-function getNumber2(){
-     console.log('2..')
-    return new Promise((resovle,reject)=>{
-        setTimeout(function() {
-            resovle(1000);
-        }, 3000);
-    })
+function getNumber2() {
+  console.log('2..');
+  return new Promise((resovle) => {
+    setTimeout(() => {
+      resovle(1000);
+    }, 3000);
+  });
 }
 
 
@@ -100,9 +99,9 @@ function getNumber2(){
 //     console.log('done.==>',r)
 // });;
 
-//------------------------------异步
+// ------------------------------异步
 
-var gen =  async function (){
+const gen = async function () {
     // var {n1,n2} = await {
     //     "n1":getNumber1(),
     //     "n2":getNumber2()
@@ -118,14 +117,14 @@ var gen =  async function (){
     // return  n1+n2;
 
     // 代码太多，看应用场景
-    let [n1,n2] =  [getNumber1,getNumber2].map(async (func, index)=> {
-        var r = await func();
-        console.log(index,'====>',r);
-        return r;
-    });
-    console.log('n1=>',n1)
-    return await n1 + await n2;
-}
+  const [n1, n2] = [getNumber1, getNumber2].map(async (func, index) => {
+    const r = await func();
+    console.log(index, '====>', r);
+    return r;
+  });
+  console.log('n1=>', n1);
+  return await n1 + await n2;
+};
 
 
 // // // co(gen)
@@ -133,5 +132,3 @@ var gen =  async function (){
 //  gen().then(r=>{
 //     console.log('done..', r)
 // })
-
- 

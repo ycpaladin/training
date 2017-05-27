@@ -1,11 +1,11 @@
-'use strict'
+
+
 // console.log(Object.is('foo', 'foo'));//true
 // console.log('foo' === 'foo');//true
 
 
 // console.log(Object.is(NaN, NaN));//true
 // console.log(NaN === NaN);//false
-
 
 
 // var obj = {
@@ -41,7 +41,6 @@
 // })
 
 
-
 // var obj1 = {
 //     a: { b: 1 }
 // }
@@ -55,21 +54,22 @@
 
 const propertyName = ['index'];
 class Point {
-    constructor(x, y, { z } = { z: 122 }) {
-        const _private = {
-            [propertyName[0]]: 0
-        }
-        Object.assign(this, {
-            x, y, z,
-            get index() {
-                return _private['index'];
-            },
-            set index(value) {
-                _private['index'] = value || undefined;
-            }
+  constructor(x, y, { z } = { z: 122 }) {
+    const _private = {
+      [propertyName[0]]: 0,
+    };
+    Object.assign(this, { x,
+      y,
+      z,
+      get index() {
+        return _private.index;
+      },
+      set index(value) {
+        _private.index = value || undefined;
+      },
 
-        });
-    }
+    });
+  }
 }
 
 const point = new Point(12, 15);
@@ -77,10 +77,10 @@ const point = new Point(12, 15);
 
 // point.index = 111;
 Object.assign(Point.prototype, {
-    render() {
-        const { x, y, z, index } = this;
-        console.log(x, y, z, index)
-    }
+  render() {
+    const { x, y, z, index } = this;
+    console.log(x, y, z, index);
+  },
 });
 
 point.render();
