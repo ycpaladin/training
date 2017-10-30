@@ -4,17 +4,120 @@
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <title></title>
-    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
-   
 </head>
 
 <body>
-    <div id="container" my-controller="qqq">
-        ${data.name}==>${data.name}
+    <table id="table">
+        <tbody>
 
-        <button type="buton" id="xxx" >Change name</button>
-    </div>
-     <script src="./lib/app29.js"></script>
+        </tbody>
+    </table>
+    <script>
+        window.onload = function () {
+
+
+            var table = document.querySelector('#table');
+            var tbody = table.querySelector('tbody');
+            var beginDate = new Date();
+
+            // for (var index = 0; index < 200000; index++) {
+            //     var tr = document.createElement('tr');
+
+            //     for (var column = 0; column < 10; column++) {
+            //         var td = document.createElement('td');
+            //         td.innerText = 'row:' + index + ', column:' + column;
+            //         tr.appendChild(td);
+            //     }
+            //     tbody.appendChild(tr);
+            // }
+
+            // var endDate = new Date();
+            // console.log(endDate - beginDate)
+
+            // ---------------------2 -----------------------------
+            var rowCount = 10000;
+            var rowIndex = 0;
+            var rowThreshold = 5000;
+            var isCompleted = false;
+
+            var timer = setTimeout(function fn() {
+                if (isCompleted) {
+                    clearTimeout(timer);
+                    var endDate = new Date();
+                    console.log(endDate - beginDate)
+                    return;
+                }
+
+                for (var row = rowIndex, rowLen = rowThreshold + rowIndex; row < rowLen; row++) {
+                    var tr = document.createElement('tr');
+                    for (var column = 0, columnLen = 5; column < columnLen; column++) {
+                        var td = document.createElement('td'),
+                            txt = document.createTextNode('row:' + row + ', column:' + column)
+                        td.appendChild(txt);
+                        tr.appendChild(td);
+                    }
+
+                    tbody.appendChild(tr);
+                }
+                rowIndex += rowThreshold;
+                if (rowIndex >= rowCount) {
+                    isCompleted = true;
+                }
+                setTimeout(fn, 0);
+            }, 0);
+
+
+            // 3----------
+
+            // var startTime = new Date().getTime();
+            // (function () {
+            //     /*这里我们把原本一步完成的事情，在这里分成5小步，从而达到把耗时大的代码划分为耗时小的代码
+            //     有利于html页面快速构建*/
+            //     var table = document.getElementsByTagName('table')[0];
+            //     var tbody = table.getElementsByTagName('tbody')[0];
+            //     var stepNum = 4000;
+            //     var isComplete = false; //表格是否渲染完成
+            //     var num = 0; //单元格序号
+            //     var isDisplayTime = true; //是否打印时间
+            //     var timeoutId = setTimeout(function fn() {
+            //         if (isComplete) {
+            //             clearTimeout(timeoutId);
+            //             var endTime = new Date().getTime();
+            //             var diffTime = endTime - startTime;
+            //             console.log("渲染这个表格共花了" + diffTime + "毫秒");
+            //             return;
+            //         };
+            //         for (var i = 0, len = 4000; i < len; i++) {
+            //             var tr = document.createElement('tr');
+            //             for (var j = 0, len1 = 6; j < len1; j++) {
+            //                 var td = document.createElement('td');
+            //                 num += 1;
+            //                 var currentNum = num; //因为i是从零开始的，所以需要加1
+            //                 td.appendChild(document.createTextNode(currentNum));
+            //                 tr.appendChild(td);
+            //             };
+            //             tbody.appendChild(tr);
+            //         };
+            //         stepNum += 4000;
+            //         if (stepNum > 20000) {
+            //             isComplete = true; //说明已经超过20000行了
+            //         };
+            //         // if (isDisplayTime) {
+            //         //     isDisplayTime = false;
+            //         //     var endTime = new Date().getTime();
+            //         //     var diffTime = endTime - startTime;
+            //         //     console.log("渲染这个表格共花了" + diffTime + "毫秒");
+            //         // };
+            //         setTimeout(fn, 0); //0ms之后继续调用fn
+            //         //这里说明一下，setTimeout和setInterval并不能准确保证短时粒度的执行
+            //         //也就是说，这里虽然要求是0ms之后把代码推送到事件队列里面
+            //         //但是可能实际上是真正执行的是在比0ms长的时间之后推送到时间队列里面
+            //         //关于这一点可以再开一个单元来说明
+            //     }, 0);
+            // })();
+
+        }
+    </script>
 </body>
 
 </html>
