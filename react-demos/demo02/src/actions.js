@@ -1,0 +1,4 @@
+
+export const LOAD_USER_FETCHING = 'LOAD_USER_FETCHING';
+export const LOAD_USER_SUCESS = 'LOAD_USER_SUCESS';
+export const LOAD_USER_FAIL = 'LOAD_USER_FAIL';
