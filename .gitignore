@@ -4,3 +4,5 @@ babel/lib
 
 **/build
 **/.vscode
+
+**/lib
