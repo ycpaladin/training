@@ -1,31 +1,32 @@
-import { ofType } from './effects/effects';
+import {
+    ofType
+} from './effects/effects';
 // export function 
 
 import * as actions from './actions';
-// export const x = ofType('xxx')(function(action, dispatch, getState){
 
-// });
-
-// ofType(actions.LOAD_USER_FETCHING, function (action, dispatch, getState) {
-//     // dispatch({ type: actions.})
-
-//     setTimeout(() => {
-//         dispatch({type: actions.LOAD_USER_SUCESS, payload:[{
-//             id: 1,
-//             name: 'kevin'
-//         }, {
-//             id: 2,
-//             name: 'ccw'
-//         }]})
-//     }, 2000);
-
-// });
-
-ofType("xxxx", function(action, dispatch, getState){
-    
+export const effect = ofType(actions.LOAD_USER_FETCHING, function (action, dispatch, getState) {
+    setTimeout(() => {
+        const isFetching = getState(root => root.isFetching);
+        const error = getState(root => root.error);
+        console.log(isFetching, error);
+        dispatch({
+            type: actions.LOAD_USER_SUCESS,
+            payload: [{
+                id: 1,
+                name: 'kevin'
+            }, {
+                id: 2,
+                name: 'ccw'
+            }]
+        })
+    }, 2000);
 });
-// .getState(state => state.name)
-// .getState(state => state.id)
-// .effect(function(dispatch, [name, id]){
 
-// });
+
+export const xxx = ofType(actions.LOAD_USER_SUCESS, function (action,dispatch) {
+    dispatch({
+        type: actions.LOAD_USER_FAIL,
+        payload: '出现错误咯。'
+    })
+});

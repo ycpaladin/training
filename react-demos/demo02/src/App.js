@@ -12,10 +12,15 @@ class App extends Component {
     }
 
     render() {
-        const {data}  = this.props;
+        const {data, message}  = this.props;
         let children = null;
         if(data){
             children = data.map(({ id, name},index)=>(<li key={index}>{name}</li>))
+        }
+
+        let msg = null;
+        if(message) {
+            msg = <div>{message}</div>
         }
         return (
         <div className="App">
@@ -26,6 +31,7 @@ class App extends Component {
             <ul>
                 {children}
             </ul>
+            {msg}
         </div>
         );
     }
