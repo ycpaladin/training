@@ -7,18 +7,18 @@ import sagas from "./sagas";
 import {
     reducer
 } from './reducer';
+import "./effect";
+import {createMiddleWare} from './effects/middleware';
 
-import myMiddleware from './middleware';
+// const middleware = createSageMiddleware();
 
-const middleware = createSageMiddleware();
+const middleware2 = createMiddleWare();
 
-const middleware2 = myMiddleware();
-
-const buildStore = applyMiddleware(middleware, middleware2)(createStore);
+const buildStore = applyMiddleware(middleware2)(createStore);
 
 
 // store.
 
 export const store = buildStore(reducer);
 
-middleware.run(sagas);
+// middleware.run(sagas);
