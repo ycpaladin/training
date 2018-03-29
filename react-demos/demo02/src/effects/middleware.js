@@ -19,14 +19,13 @@ export function createMiddleWare() {
         const element = arguments[index];
         for (const key in element) {
             if (element.hasOwnProperty(key)) {
-                const {  type, effect  } = element[key];
+                const { type, effect } = element[key];
                 addEffect(type, effect);
             }
         }
     }
 
     return function (store) {
-       
         return function (next) {
             return function (action) {
                 const effect = getEffect(action.type);
@@ -37,7 +36,7 @@ export function createMiddleWare() {
                     }
                 }
                 return _action;
-            }
-        }
+            };
+        };
     };
 }
