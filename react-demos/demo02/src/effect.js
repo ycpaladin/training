@@ -1,6 +1,6 @@
 import {
     ofType
-} from './effects/effects';
+} from './effects/ofType';
 // export function 
 
 import * as actions from './actions';

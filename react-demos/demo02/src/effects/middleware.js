@@ -1,8 +1,8 @@
 
+import { getState } from './getState';
+
 export function createMiddleWare() {
-
     const effects = {};
-
     function getEffect(type) {
         const group = effects[type] || [];
         effects[type] = group;
@@ -26,23 +26,14 @@ export function createMiddleWare() {
     }
 
     return function (store) {
-        const {
-            dispatch,
-            getState
-        } = store;
+       
         return function (next) {
             return function (action) {
                 const effect = getEffect(action.type);
                 const _action = next(action);
-
-                function _getState(state) {
-                    return function (predicate) {
-                        return predicate(state);
-                    }
-                }
                 if (effect.length > 0) {
                     for (let i = 0; i < effect.length; i++) {
-                        effect[i](action, dispatch, _getState(getState()));
+                        effect[i](action, store.dispatch, getState(store.getState()));
                     }
                 }
                 return _action;
